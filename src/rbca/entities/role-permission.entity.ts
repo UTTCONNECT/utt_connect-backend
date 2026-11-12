@@ -11,3 +11,4 @@ export class RolePermission {
   @CreateDateColumn({ name: 'granted_at', type: 'timestamptz' })
   grantedAt!: Date;
 }
+//ya jala w
