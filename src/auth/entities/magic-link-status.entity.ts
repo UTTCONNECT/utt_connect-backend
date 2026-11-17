@@ -8,6 +8,6 @@ export class MagicLinkStatus {
   @Column({ type: 'varchar', length: 255 }) 
   description: string;
 
-  @Column({ name: 'is_terminal', type: 'boolean' })
+  @Column({ name: 'is_terminal', type: 'boolean', default: false })
   isTerminal: boolean;
 }
