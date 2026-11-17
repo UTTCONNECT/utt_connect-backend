@@ -1,43 +1,61 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-@Entity('audit_events')
+@Entity({ name: 'audit_events' })
 export class AuditEvent {
-  @PrimaryColumn({ type: 'timestamptz', default: () => 'now()' })
-  occurred_at!: Date;
+  @PrimaryColumn({
+    name: 'occurred_at',
+    type: 'timestamptz',
+    default: () => 'now()',
+  })
+  occurredAt!: Date;
 
-  @PrimaryColumn({ type: 'uuid', default: () => 'gen_random_uuid()' })
+  @PrimaryColumn({
+    name: 'id',
+    type: 'uuid',
+    default: () => 'gen_random_uuid()',
+  })
   id!: string;
 
-  @Column({ type: 'varchar', length: 80 })
-  event_type_code!: string;
+  @Column({ name: 'event_type_code', type: 'varchar', length: 80 })
+  eventTypeCode!: string;
 
-  @Column({ type: 'uuid', nullable: true })
-  actor_user_id!: string;
+  @Column({ name: 'actor_user_id', type: 'uuid', nullable: true })
+  actorUserId!: string | null;
 
-  @Column({ type: 'uuid', nullable: true })
-  subject_user_id!: string;
+  @Column({ name: 'subject_user_id', type: 'uuid', nullable: true })
+  subjectUserId!: string | null;
 
-  @Column({ type: 'uuid', nullable: true })
-  magic_link_request_id!: string;
+  @Column({ name: 'magic_link_request_id', type: 'uuid', nullable: true })
+  magicLinkRequestId!: string | null;
 
-  @Column({ type: 'uuid', nullable: true })
-  correlation_id!: string;
+  @Column({ name: 'correlation_id', type: 'uuid', nullable: true })
+  correlationId!: string | null;
 
-  @Column({ type: 'varchar', length: 80, nullable: true })
-  resource_type!: string;
+  @Column({
+    name: 'resource_type',
+    type: 'varchar',
+    length: 80,
+    nullable: true,
+  })
+  resourceType!: string | null;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  resource_id!: string;
+  @Column({
+    name: 'resource_id',
+    type: 'varchar',
+    length: 255,
+    nullable: true,
+  })
+  resourceId!: string | null;
 
-  @Column({ type: 'inet', nullable: true })
-  source_ip!: string;
+  @Column({ name: 'source_ip', type: 'inet', nullable: true })
+  sourceIp!: string | null;
 
-  @Column({ type: 'text', nullable: true })
-  user_agent!: string;
+  @Column({ name: 'user_agent', type: 'text', nullable: true })
+  userAgent!: string | null;
 
-  @Column({ type: 'boolean' })
+  @Column({ name: 'succeeded', type: 'boolean' })
   succeeded!: boolean;
 
-  @Column({ type: 'jsonb', default: {} })
-  payload!: any;
+  @Column({ name: 'payload', type: 'jsonb', default: () => "'{}'::jsonb" })
+  payload!: Record<string, unknown>;
 }
