@@ -14,7 +14,12 @@ export class MagicLinkRequest {
   @Column({ name: 'status_code', type: 'varchar', length: 32, default: 'requested' })
   statusCode: string;
 
-  @Column({ name: 'correlation_id', type: 'uuid', unique: true })
+  @Column({
+    name: 'correlation_id',
+    type: 'uuid',
+    unique: true,
+    default: () => 'gen_random_uuid()',
+  })
   correlationId: string;
 
   @Column({ name: 'continue_url', type: 'text' })
