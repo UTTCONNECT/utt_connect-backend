@@ -5,6 +5,6 @@ export class UserStatus {
   @PrimaryColumn({ type: 'varchar', length: 32 })
   code: string;
 
-  @Column({ type: 'varchar', length: 255 }) 
+  @Column({ type: 'varchar', length: 255 })
   description: string;
 }

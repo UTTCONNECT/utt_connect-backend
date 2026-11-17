@@ -1,4 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'magic_link_requests' })
 export class MagicLinkRequest {
@@ -11,7 +16,12 @@ export class MagicLinkRequest {
   @Column({ type: 'citext' })
   email: string;
 
-  @Column({ name: 'status_code', type: 'varchar', length: 32, default: 'requested' })
+  @Column({
+    name: 'status_code',
+    type: 'varchar',
+    length: 32,
+    default: 'requested',
+  })
   statusCode: string;
 
   @Column({
@@ -34,7 +44,12 @@ export class MagicLinkRequest {
   @Column({ name: 'user_agent', type: 'text', nullable: true })
   userAgent: string | null;
 
-  @Column({ name: 'firebase_event_id', type: 'varchar', length: 255, nullable: true })
+  @Column({
+    name: 'firebase_event_id',
+    type: 'varchar',
+    length: 255,
+    nullable: true,
+  })
   firebaseEventId: string | null;
 
   @CreateDateColumn({ name: 'requested_at', type: 'timestamptz' })
@@ -49,10 +64,20 @@ export class MagicLinkRequest {
   @Column({ name: 'consumed_at', type: 'timestamptz', nullable: true })
   consumedAt: Date | null;
 
-  @Column({ name: 'failure_code', type: 'varchar', length: 100, nullable: true })
+  @Column({
+    name: 'failure_code',
+    type: 'varchar',
+    length: 100,
+    nullable: true,
+  })
   failureCode: string | null;
 
-  @Column({ name: 'failure_detail', type: 'varchar', length: 500, nullable: true })
+  @Column({
+    name: 'failure_detail',
+    type: 'varchar',
+    length: 500,
+    nullable: true,
+  })
   failureDetail: string | null;
 
   @Column({ type: 'jsonb', default: () => "'{}'::jsonb" })
